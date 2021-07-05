@@ -55,19 +55,25 @@
 								<s:select list="customerSource" headerKey="" headerValue="---请选择---"
 								listKey="dictId" listValue="dictItemName"
 								class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
-									<select name="custSource" class=textbox id=sChannel2 style="WIDTH: 180px">
+						<%-- <select name="custSource" class=textbox id=sChannel2 style="WIDTH: 180px">
 										<option value="non">---请选择---</option>
 										<option value="6">电话营销</option>
 										<option value="7">网络营销</option>
 									</select>
+									--%>
 								</td>
 								<td>客户级别：</td>
 								<td>
+								<s:select list="customerLevel" headerKey="" headerValue="---请选择---"
+								listKey="dictId" listValue="dictItemName"
+								class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
+								<%--
 									<select name="custLevel" class=textbox id=sChannel2 style="WIDTH: 180px">
 										<option value="non">---请选择---</option>
 										<option value="22">普通客户</option>
 										<option value="23">VIP客户</option>
-									</select>								
+									</select>		
+									 --%>						
 								</td>
 							</TR>
 							<TR>
