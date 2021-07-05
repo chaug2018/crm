@@ -38,8 +38,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private Customer customer = new Customer();
 	private List<Customer> customers;
 
-	private List<BaseDict> customerSource;
-	private List<BaseDict> customerLevel;
+	private List<BaseDict> custSources;
+	private List<BaseDict> custLevels;
 
 	@Resource(name = "customerService")
 	private CustomerService custService;
@@ -58,10 +58,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	@Action("addUICustomer")
 	public String addUICustomer() {
 //		1.查询所有的客户来源
-		customerSource = custService.findAllCustomerSource();
-		customerLevel = custService.findAllCustomerLevel();
-		System.out.println(customerSource);
-		System.out.println(customerLevel);
+		custSources = custService.findAllCustomerSource();
+		custLevels = custService.findAllCustomerLevel();
+		System.out.println(custSources);
+		System.out.println(custLevels);
 //		2.查询所有的客户级别
 
 		return "addUI";
@@ -103,20 +103,20 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.customers = customers;
 	}
 
-	public List<BaseDict> getCustomerSource() {
-		return customerSource;
+	public List<BaseDict> getCustSources() {
+		return custSources;
 	}
 
-	public void setCustomerSource(List<BaseDict> customerSource) {
-		this.customerSource = customerSource;
+	public void setCustSources(List<BaseDict> custSources) {
+		this.custSources = custSources;
 	}
 
-	public List<BaseDict> getCustomerLevel() {
-		return customerLevel;
+	public List<BaseDict> getCustLevels() {
+		return custLevels;
 	}
 
-	public void setCustomerLevel(List<BaseDict> customerLevel) {
-		this.customerLevel = customerLevel;
+	public void setCustLevels(List<BaseDict> custLevels) {
+		this.custLevels = custLevels;
 	}
 
 	public CustomerService getCustService() {
@@ -126,6 +126,13 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public void setCustService(CustomerService custService) {
 		this.custService = custService;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerAction [customer=" + customer + ", customers=" + customers + ", custSources=" + custSources
+				+ ", custLevels=" + custLevels + ", custService=" + custService + "]";
+	}
+	
 
 
 }

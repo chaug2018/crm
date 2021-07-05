@@ -18,7 +18,7 @@ public class BaseDict implements Serializable {
 
 	@Id
 	@Column(name="dict_id")
-	private String dictId;
+	private Long dictId;
 	
 	@Column(name="dict_type_code")
 	private String dictTypeCode;
@@ -40,61 +40,76 @@ public class BaseDict implements Serializable {
 	
 	@Column(name="dict_memo")
 	private String dictMemo;
-	
-	public String getDictId() {
+
+	public Long getDictId() {
 		return dictId;
 	}
-	public void setDictId(String dictId) {
+
+	public void setDictId(Long dictId) {
 		this.dictId = dictId;
 	}
+
 	public String getDictTypeCode() {
 		return dictTypeCode;
 	}
+
 	public void setDictTypeCode(String dictTypeCode) {
 		this.dictTypeCode = dictTypeCode;
 	}
+
 	public String getDictTypeName() {
 		return dictTypeName;
 	}
+
 	public void setDictTypeName(String dictTypeName) {
 		this.dictTypeName = dictTypeName;
 	}
+
 	public String getDictItemName() {
 		return dictItemName;
 	}
+
 	public void setDictItemName(String dictItemName) {
 		this.dictItemName = dictItemName;
 	}
+
 	public String getDictItemCode() {
 		return dictItemCode;
 	}
+
 	public void setDictItemCode(String dictItemCode) {
 		this.dictItemCode = dictItemCode;
 	}
+
 	public Integer getDictSort() {
 		return dictSort;
 	}
+
 	public void setDictSort(Integer dictSort) {
 		this.dictSort = dictSort;
 	}
+
 	public String getDictEnable() {
 		return dictEnable;
 	}
+
 	public void setDictEnable(String dictEnable) {
 		this.dictEnable = dictEnable;
 	}
+
 	public String getDictMemo() {
 		return dictMemo;
 	}
+
 	public void setDictMemo(String dictMemo) {
 		this.dictMemo = dictMemo;
 	}
+
 	@Override
 	public String toString() {
 		return "BaseDict [dictId=" + dictId + ", dictTypeCode=" + dictTypeCode + ", dictTypeName=" + dictTypeName
 				+ ", dictItemName=" + dictItemName + ", dictItemCode=" + dictItemCode + ", dictSort=" + dictSort
 				+ ", dictEnable=" + dictEnable + ", dictMemo=" + dictMemo + "]";
 	}
-	
 	
 }

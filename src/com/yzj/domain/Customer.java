@@ -37,14 +37,14 @@ public class Customer implements Serializable {
 	@Column(name="cust_phone")
 	private String custPhone;
 	
-//	多对一映射,多个客户可以是同一来源
-	@ManyToOne(targetEntity = BaseDict.class)
-	@JoinColumn(name="cust_source",referencedColumnName = "dict_id")
+	//多对一关系映射：多个客户可以是一个来源
+	@ManyToOne(targetEntity=BaseDict.class)
+	@JoinColumn(name="cust_source",referencedColumnName="dict_id")
 	private BaseDict custSource;
 	
-//	多对一映射，多个客户可以是同一级别
-	@ManyToOne(targetEntity = BaseDict.class)
-	@JoinColumn(name="cust_level",referencedColumnName = "dict_id")
+	//多对一关系映射：多个客户可以是同一个级别
+	@ManyToOne(targetEntity=BaseDict.class)
+	@JoinColumn(name="cust_level",referencedColumnName="dict_id")
 	private BaseDict custLevel;
 
 	public Long getCustId() {
@@ -87,8 +87,28 @@ public class Customer implements Serializable {
 		this.custPhone = custPhone;
 	}
 
+	public BaseDict getCustSource() {
+		return custSource;
+	}
+
+	public void setCustSource(BaseDict custSource) {
+		this.custSource = custSource;
+	}
+
+	public BaseDict getCustLevel() {
+		return custLevel;
+	}
+
+	public void setCustLevel(BaseDict custLevel) {
+		this.custLevel = custLevel;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [custId=" + custId + ", custName=" + custName + ", custIndustry=" + custIndustry
+				+ ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", custSource=" + custSource
+				+ ", custLevel=" + custLevel + "]";
+	}
 	
 	
-
-
 }

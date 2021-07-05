@@ -52,7 +52,7 @@
 							<TR>	
 								<td>信息来源 ：</td>
 								<td>
-								<s:select list="customerSource" headerKey="" headerValue="---请选择---"
+								<s:select name="custSource.dictId" list="custSources" headerKey="" headerValue="---请选择---"
 								listKey="dictId" listValue="dictItemName"
 								class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
 						<%-- <select name="custSource" class=textbox id=sChannel2 style="WIDTH: 180px">
@@ -64,7 +64,7 @@
 								</td>
 								<td>客户级别：</td>
 								<td>
-								<s:select list="customerLevel" headerKey="" headerValue="---请选择---"
+								<s:select name="custLevel.dictId" list="custLevels" headerKey="" headerValue="---请选择---"
 								listKey="dictId" listValue="dictItemName"
 								class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
 								<%--
@@ -73,7 +73,7 @@
 										<option value="22">普通客户</option>
 										<option value="23">VIP客户</option>
 									</select>		
-									 --%>						
+								 --%>						
 								</td>
 							</TR>
 							<TR>
