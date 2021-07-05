@@ -1,0 +1,41 @@
+package com.yzj.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+
+import com.yzj.dao.CustomerDao;
+import com.yzj.domain.BaseDict;
+import com.yzj.domain.Customer;
+import com.yzj.service.CustomerService;
+
+@Service("customerService")
+@Transactional(readOnly = true,propagation = Propagation.SUPPORTS)
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Resource(name="customerDao")
+	CustomerDao customerDao;
+	
+	
+	@Override
+	public List<Customer> findAll(DetachedCriteria criteria) {
+		// TODO Auto-generated method stub
+		return customerDao.findAll(criteria);
+	}
+
+	@Override
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+	public void save(Customer customer) {
+		// TODO Auto-generated method stub
+		customerDao.save(customer);
+	}
+
+
+
+}
