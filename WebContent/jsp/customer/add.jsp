@@ -52,6 +52,9 @@
 							<TR>	
 								<td>信息来源 ：</td>
 								<td>
+								<s:select list="customerSource" headerKey="" headerValue="---请选择---"
+								listKey="dictId" listValue="dictItemName"
+								class="textbox" id="sChannel2" style="WIDTH: 180px"></s:select>
 									<select name="custSource" class=textbox id=sChannel2 style="WIDTH: 180px">
 										<option value="non">---请选择---</option>
 										<option value="6">电话营销</option>

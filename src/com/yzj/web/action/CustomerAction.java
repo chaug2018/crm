@@ -60,6 +60,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 //		1.查询所有的客户来源
 		customerSource = custService.findAllCustomerSource();
 		customerLevel = custService.findAllCustomerLevel();
+		System.out.println(customerSource);
+		System.out.println(customerLevel);
 //		2.查询所有的客户级别
 
 		return "addUI";
@@ -83,6 +85,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			System.out.println(customer);
 		}
 		return "findAll";
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public List<Customer> getCustomers() {
@@ -116,4 +126,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public void setCustService(CustomerService custService) {
 		this.custService = custService;
 	}
+
+
 }
