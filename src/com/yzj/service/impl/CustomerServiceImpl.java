@@ -49,6 +49,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return baseDictDao.findBaseDictByTypeCode("006");
 	}
 
+	@Override
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+	public void deleteCustomer(Long custId) {
+		customerDao.deletCustomerById(custId);
+		
+	}
+
 
 
 }

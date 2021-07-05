@@ -75,6 +75,17 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "listCustomer";
 
 	}
+	/**
+	 * deleteCustomer 删除客户
+	 * @return
+	 */
+	@Action("deleteCustomer")
+	public String deleteCustomer() {
+		System.out.println("---------");
+		custService.deleteCustomer(customer.getCustId());
+		System.out.println(customer.getCustId());
+		return "listCustomer";
+	}
 
 //	获取客户列表的页面
 	@Action("findAllCustomer")

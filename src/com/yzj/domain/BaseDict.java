@@ -56,7 +56,6 @@ public class BaseDict implements Serializable {
 	public void setDictTypeCode(String dictTypeCode) {
 		this.dictTypeCode = dictTypeCode;
 	}
-
 	public String getDictTypeName() {
 		return dictTypeName;
 	}

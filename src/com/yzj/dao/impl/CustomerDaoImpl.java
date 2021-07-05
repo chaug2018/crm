@@ -27,7 +27,21 @@ public class CustomerDaoImpl implements CustomerDao  {
 	@Override
 	public void save(Customer customer) {
 		// TODO Auto-generated method stub
+		
 		hibernateTemplate.save(customer);
 	}
+	@Override
+	public Customer findById(Long custId) {
+		
+		return hibernateTemplate.get(Customer.class, custId);
+	}
+	
+
+	@Override
+	public void deletCustomerById(Long custId) {
+//	Customer customer=findById(custId);
+	hibernateTemplate.delete(findById(custId));
+	}
+
 	
 }

@@ -17,5 +17,7 @@ public interface CustomerService {
 
 	List<BaseDict> findAllCustomerLevel();
 
+	void deleteCustomer(Long custId);
+
 
 }

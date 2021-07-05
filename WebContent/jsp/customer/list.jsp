@@ -9,12 +9,14 @@
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
-<SCRIPT language=javascript>
-	function to_page(page){
-		if(page){
-			$("#page").val(page);
-		}
-		document.customerForm.submit();	
+<script language=javascript>
+	function deleOne(custId){
+		var sure =window.confirm("确定删除？")
+		<%--
+		alert(custId);
+		var path="${pageContext.request.contextPath}";
+		alert(path);--%>
+		window.location.href="${pageContext.request.contextPath}/customer/deleteCustomer.action?custId="+custId;
 	}
 </SCRIPT>
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -76,8 +78,8 @@
 												<s:iterator value="customers">
 												<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 													<TD>${custName}</TD>
-													<TD>${custLevel}</TD>
-													<TD>${custSource}</TD>
+													<TD>${custLevel.dictItemName}</TD>
+													<TD>${custSource.dictItemName}</TD>
 													<TD>${custIndustry}</TD>
 													<TD>${custAddress}</TD>
 													<TD>${custPhone}</TD>
@@ -85,6 +87,7 @@
 													<a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=editCustomerUI&custId=${custId}">修改</a>
 													&nbsp;&nbsp;
 													<a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=removeCustomer&custId=${custId}">删除</a>
+													<s:a href="javascript:deleOne('%{custId}')">删除</s:a>
 													</TD>
 												</TR>	
 												</s:iterator>
