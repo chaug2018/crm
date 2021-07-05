@@ -12,7 +12,7 @@
 <BODY>
 
 <s:debug></s:debug>
-	<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/customer/addCustomer.action" method=post>
+<s:form action="addCustomer" namespace="/customer" method="post">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -41,11 +41,12 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custName">
+								<s:textfield name="custName" class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50" />
+									
 								</td>
 								<td>所属行业 ：</td>
 								<td>
-									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custIndustry">
+								<s:textfield name="custIndustry" class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50" />
 								</td>
 							</TR>							
 							<TR>	
@@ -69,15 +70,16 @@
 							<TR>
 								<td>联系地址 ：</td>
 								<td>
-									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custAddress">
+								<s:textfield name="custAddress" class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50" />
 								</td>
 								<td>联系电话 ：</td>
 								<td>
-									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custPhone">
+								<s:textfield name="custPhone" class="textbox" id="sChannel2" style="WIDTH: 180px" maxLength="50" />
 								</td>
 							</TR>
 							<tr>
 								<td rowspan=2>
+								
 									<INPUT class=button id=sButton2 type=submit value=" 保存 " name=sButton2>
 								</td>
 							</tr>
@@ -98,6 +100,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-	</FORM>
+	</s:form>
 </BODY>
 </HTML>
