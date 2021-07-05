@@ -36,12 +36,16 @@ public class Customer implements Serializable {
 	
 	@Column(name="cust_phone")
 	private String custPhone;
-
-	@Column(name="cust_Source")
-	private String custSource;
 	
-	@Column(name="cust_level")
-	private String custLevel;
+//	多对一映射,多个客户可以是同一来源
+	@ManyToOne(targetEntity = BaseDict.class)
+	@JoinColumn(name="cust_source",referencedColumnName = "dict_id")
+	private BaseDict custSource;
+	
+//	多对一映射，多个客户可以是同一级别
+	@ManyToOne(targetEntity = BaseDict.class)
+	@JoinColumn(name="cust_level",referencedColumnName = "dict_id")
+	private BaseDict custLevel;
 
 	public Long getCustId() {
 		return custId;
@@ -83,28 +87,7 @@ public class Customer implements Serializable {
 		this.custPhone = custPhone;
 	}
 
-	public String getCustSource() {
-		return custSource;
-	}
-
-	public void setCustSource(String custSource) {
-		this.custSource = custSource;
-	}
-
-	public String getCustLevel() {
-		return custLevel;
-	}
-
-	public void setCustLevel(String custLevel) {
-		this.custLevel = custLevel;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [custId=" + custId + ", custName=" + custName + ", custIndustry=" + custIndustry
-				+ ", custAddress=" + custAddress + ", custPhone=" + custPhone + ", custSource=" + custSource
-				+ ", custLevel=" + custLevel + "]";
-	}
+	
 	
 
 

@@ -13,5 +13,9 @@ public interface CustomerService {
 
 	void save(Customer customer);
 
+	List<BaseDict> findAllCustomerSource();
+
+	List<BaseDict> findAllCustomerLevel();
+
 
 }

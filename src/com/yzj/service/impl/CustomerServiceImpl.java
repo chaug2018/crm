@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.yzj.dao.BaseDictDao;
 import com.yzj.dao.CustomerDao;
 import com.yzj.domain.BaseDict;
 import com.yzj.domain.Customer;
@@ -22,7 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Resource(name="customerDao")
 	CustomerDao customerDao;
 	
-	
+	@Resource(name="baseDictDao")
+	BaseDictDao  baseDictDao;
 	@Override
 	public List<Customer> findAll(DetachedCriteria criteria) {
 		// TODO Auto-generated method stub
@@ -34,6 +35,18 @@ public class CustomerServiceImpl implements CustomerService {
 	public void save(Customer customer) {
 		// TODO Auto-generated method stub
 		customerDao.save(customer);
+	}
+
+	@Override
+	public List<BaseDict> findAllCustomerSource() {
+		// TODO Auto-generated method stub
+		return baseDictDao.findBaseDictByTypeCode("002");
+	}
+
+	@Override
+	public List<BaseDict> findAllCustomerLevel() {
+		// TODO Auto-generated method stub
+		return baseDictDao.findBaseDictByTypeCode("006");
 	}
 
 
