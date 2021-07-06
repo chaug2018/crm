@@ -11,13 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.yzj.dao.CustomerDao;
 import com.yzj.domain.Customer;
 
-
 @Repository("customerDao")
-public class CustomerDaoImpl implements CustomerDao  {
+public class CustomerDaoImpl implements CustomerDao {
 
-	@Resource(name="hibernateTemplate")
+	@Resource(name = "hibernateTemplate")
 	HibernateTemplate hibernateTemplate;
-	
+
 	@Override
 	public List<Customer> findAll(DetachedCriteria criteria) {
 		// TODO Auto-generated method stub
@@ -27,21 +26,29 @@ public class CustomerDaoImpl implements CustomerDao  {
 	@Override
 	public void save(Customer customer) {
 		// TODO Auto-generated method stub
-		
+
 		hibernateTemplate.save(customer);
 	}
+
 	@Override
 	public Customer findById(Long custId) {
-		
-		return hibernateTemplate.get(Customer.class, custId);
+
+		return hibernateTemplate.load(Customer.class, custId);
 	}
-	
 
 	@Override
 	public void deletCustomerById(Long custId) {
 //	Customer customer=findById(custId);
-	hibernateTemplate.delete(findById(custId));
+		hibernateTemplate.delete(findById(custId));
 	}
 
-	
+	/**
+	 * 更新客户信息
+	 */
+	@Override
+	public void update(Customer customer) {
+		hibernateTemplate.update(customer);
+
+	}
+
 }

@@ -18,4 +18,6 @@ public interface CustomerDao {
 	
 	Customer findById(Long custId);
 
+	void update(Customer customer);
+
 }

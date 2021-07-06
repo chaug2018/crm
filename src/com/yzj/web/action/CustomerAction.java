@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AcceptAction;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.yzj.domain.BaseDict;
@@ -33,8 +35,7 @@ import com.yzj.service.CustomerService;
 @Results({ @Result(name = "addUI", type = "dispatcher", location = "/jsp/customer/add.jsp"),
 		@Result(name = "findAll", type = "dispatcher", location = "/jsp/customer/list.jsp"),
 		@Result(name = "listCustomer", type = "redirectAction", location = "findAllCustomer"),
-		@Result(name = "editUI", type = "dispatcher", location = "/jsp/customer/edit.jsp"),		
-})
+		@Result(name = "editUI", type = "dispatcher", location = "/jsp/customer/edit.jsp"), })
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
@@ -74,8 +75,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "listCustomer";
 
 	}
+
 	/**
 	 * deleteCustomer 删除客户
+	 * 
 	 * @return
 	 */
 	@Action("deleteCustomer")
@@ -85,8 +88,19 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		System.out.println(customer.getCustId());
 		return "listCustomer";
 	}
+
+	/**
+	 * 编辑客户
+	 */
+	@Action("editCustomer")
+	public String editCustomer() {
+		custService.updateCustomer(customer);
+		return "listCustomer";
+	}
+
 	/**
 	 * 获取编辑页面
+	 * 
 	 * @return
 	 */
 	@Action("editUICustomer")
@@ -96,9 +110,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 //		2.获取客户级别
 		custLevels = custService.findAllCustomerLevel();
 //		3.获取客户信息
-		custService.findById(customer.getCustId());
+//		使用模型接受
+//		customer = custService.findById(customer.getCustId());
+		customer = custService.findById(customer.getCustId());
+//		手动压栈
+		ActionContext.getContext().getValueStack().push(customer);
 		return "editUI";
 	}
+
 //	获取客户列表的页面
 	@Action("findAllCustomer")
 	public String findAllCustomer() {
@@ -155,7 +174,5 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "CustomerAction [customer=" + customer + ", customers=" + customers + ", custSources=" + custSources
 				+ ", custLevels=" + custLevels + ", custService=" + custService + "]";
 	}
-	
-
 
 }

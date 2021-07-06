@@ -16,14 +16,15 @@ import com.yzj.domain.Customer;
 import com.yzj.service.CustomerService;
 
 @Service("customerService")
-@Transactional(readOnly = true,propagation = Propagation.SUPPORTS)
+@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class CustomerServiceImpl implements CustomerService {
-	
-	@Resource(name="customerDao")
+
+	@Resource(name = "customerDao")
 	CustomerDao customerDao;
-	
-	@Resource(name="baseDictDao")
-	BaseDictDao  baseDictDao;
+
+	@Resource(name = "baseDictDao")
+	BaseDictDao baseDictDao;
+
 	@Override
 	public List<Customer> findAll(DetachedCriteria criteria) {
 		// TODO Auto-generated method stub
@@ -31,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void save(Customer customer) {
 		// TODO Auto-generated method stub
 		customerDao.save(customer);
@@ -50,20 +51,28 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void deleteCustomer(Long custId) {
 		customerDao.deletCustomerById(custId);
-		
+
 	}
-/**
- * 查询出一个客户
- */
+
+	/**
+	 * 查询出一个客户
+	 */
 	@Override
 	public Customer findById(Long custId) {
-		
+
 		return customerDao.findById(custId);
 	}
 
-
+	/**
+	 * 更新客户信息
+	 */
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void updateCustomer(Customer customer) {
+		customerDao.update(customer);
+	}
 
 }
