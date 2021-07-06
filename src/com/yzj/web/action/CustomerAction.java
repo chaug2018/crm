@@ -70,7 +70,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	// 添加客户
 	@Action("addCustomer")
 	public String addCustomer() {
-		System.out.println(customer);
 		custService.save(customer);
 		return "listCustomer";
 
@@ -83,9 +82,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	 */
 	@Action("deleteCustomer")
 	public String deleteCustomer() {
-		System.out.println("---------");
 		custService.deleteCustomer(customer.getCustId());
-		System.out.println(customer.getCustId());
 		return "listCustomer";
 	}
 

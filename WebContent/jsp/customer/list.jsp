@@ -16,7 +16,9 @@
 		alert(custId);
 		var path="${pageContext.request.contextPath}";
 		alert(path);--%>
-		window.location.href="${pageContext.request.contextPath}/customer/deleteCustomer.action?custId="+custId;
+		if(sure){
+			window.location.href="${pageContext.request.contextPath}/customer/deleteCustomer.action?custId="+custId;
+		}
 	}
 </SCRIPT>
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -53,7 +55,7 @@
 									<TD height=25>
 										<TABLE cellSpacing=0 cellPadding=2 border=0>
 											<TBODY>
-												<TR>
+												<TR>						
 													<TD>客户名称：</TD>
 													<TD><INPUT class=textbox id=sChannel2 style="WIDTH: 80px" maxLength=50 name="custName"></TD>
 													<TD><INPUT class=button id=sButton2 type=submit value=" 筛选 " name=sButton2></TD>
@@ -92,7 +94,10 @@
 													修改
 													</s:a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=removeCustomer&custId=${custId}">删除</a>
+													<%-- 
+													<a href="${pageContext.request.contextPath }/customer/
+													CustomerServlet?method=removeCustomer&custId=${custId}">删除</a>
+													--%>
 													<s:a href="javascript:deleOne('%{custId}')">删除</s:a>
 													</TD>
 												</TR>	
@@ -119,7 +124,6 @@
 												到
 												<input type="text" size="3" id="page" name="page" />
 												页
-												
 												<input type="button" value="Go" onclick="to_page()"/>
 											</DIV>
 										</SPAN>

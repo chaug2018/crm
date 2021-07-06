@@ -49,14 +49,12 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return baseDictDao.findBaseDictByTypeCode("006");
 	}
-
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void deleteCustomer(Long custId) {
 		customerDao.deletCustomerById(custId);
 
 	}
-
 	/**
 	 * 查询出一个客户
 	 */
