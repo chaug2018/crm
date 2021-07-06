@@ -84,7 +84,13 @@
 													<TD>${custAddress}</TD>
 													<TD>${custPhone}</TD>
 													<TD>
+													<%-- 
 													<a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=editCustomerUI&custId=${custId}">修改</a>
+													--%>
+													<s:a action="editUICustomer" namespace="/customer">
+													<s:param name="custId" value="%{custId}"></s:param>
+													修改
+													</s:a>
 													&nbsp;&nbsp;
 													<a href="${pageContext.request.contextPath }/customer/CustomerServlet?method=removeCustomer&custId=${custId}">删除</a>
 													<s:a href="javascript:deleOne('%{custId}')">删除</s:a>

@@ -32,7 +32,9 @@ import com.yzj.service.CustomerService;
 @Namespace("/customer")
 @Results({ @Result(name = "addUI", type = "dispatcher", location = "/jsp/customer/add.jsp"),
 		@Result(name = "findAll", type = "dispatcher", location = "/jsp/customer/list.jsp"),
-		@Result(name = "listCustomer", type = "redirectAction", location = "findAllCustomer") })
+		@Result(name = "listCustomer", type = "redirectAction", location = "findAllCustomer"),
+		@Result(name = "editUI", type = "dispatcher", location = "/jsp/customer/edit.jsp"),		
+})
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
@@ -59,11 +61,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String addUICustomer() {
 //		1.查询所有的客户来源
 		custSources = custService.findAllCustomerSource();
-		custLevels = custService.findAllCustomerLevel();
-		System.out.println(custSources);
-		System.out.println(custLevels);
 //		2.查询所有的客户级别
-
+		custLevels = custService.findAllCustomerLevel();
 		return "addUI";
 	}
 
@@ -86,7 +85,20 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		System.out.println(customer.getCustId());
 		return "listCustomer";
 	}
-
+	/**
+	 * 获取编辑页面
+	 * @return
+	 */
+	@Action("editUICustomer")
+	public String editUICustomer() {
+//		1.获取客户来源
+		custSources = custService.findAllCustomerSource();
+//		2.获取客户级别
+		custLevels = custService.findAllCustomerLevel();
+//		3.获取客户信息
+		custService.findById(customer.getCustId());
+		return "editUI";
+	}
 //	获取客户列表的页面
 	@Action("findAllCustomer")
 	public String findAllCustomer() {

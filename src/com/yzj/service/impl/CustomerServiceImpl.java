@@ -55,6 +55,14 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.deletCustomerById(custId);
 		
 	}
+/**
+ * 查询出一个客户
+ */
+	@Override
+	public Customer findById(Long custId) {
+		
+		return customerDao.findById(custId);
+	}
 
 
 
