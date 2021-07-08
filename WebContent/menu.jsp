@@ -161,7 +161,7 @@ A.active {
 												</TR>
 												<TR>
 													<TD class=menuSmall>
-														<A class=style2 href="${pageContext.request.contextPath}/linkman/LinkManServlet?method=listLinkMan" target=main>－联系人列表</A>
+														<A class=style2 href="${pageContext.request.contextPath}/linkman/listUILinkMan" target=main>－联系人列表</A>
 													</TD>
 												</TR>
 												

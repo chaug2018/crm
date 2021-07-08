@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -69,28 +70,29 @@
 													<TD>手机</TD>
 													<TD>邮箱</TD>
 													<TD>职位</TD>
-													<TD>备注</TD>
+													<TD>联系人简历</TD>
 													<!-- <TD>所属客户</TD> -->
 													<TD>操作</TD>
 												</TR>
-												<c:forEach items="${linkmans }" var="linkman">
+												<s:iterator value="linkmans">
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD>${linkman.lkmName }</TD>
-													<TD>${linkman.lkmGender }</TD>
-													<TD>${linkman.lkmPhone }</TD>
-													<TD>${linkman.lkmMobile }</TD>
-													<TD>${linkman.lkmEmail }</TD>
-													<TD>${linkman.lkmPosition }</TD>
-													<TD>${linkman.lkmMemo }</TD>
+													<TD>${lkmName }</TD>
+													<TD>${lkmGender }</TD>
+													<TD>${lkmPhone }</TD>
+													<TD>${lkmMobile }</TD>
+													<TD>${lkmEmail }</TD>
+													<TD>${lkmPosition }</TD>
+													<TD>${lkmMemo }</TD>
 													<%-- <TD>${linkman.lkmCustomer.custName}</TD> --%>
 													<TD>
+													<s:a ></s:a>
 													<a href="${pageContext.request.contextPath }/linkman/LinkManServlet?method=editLinkManUI&lkmId=${linkman.lkmId}">修改</a>
 													&nbsp;&nbsp;
 													<a href="${pageContext.request.contextPath }/linkman/LinkManServlet?method=deleteLinkMan&lkmId=${linkman.lkmId}">删除</a>
 													</TD>
 												</TR>
-												</c:forEach>
+												</s:iterator>
 											</TBODY>
 										</TABLE>
 									</TD>

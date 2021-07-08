@@ -134,6 +134,7 @@
 													--%> <s:a href="javascript:deleOne('%{custId}')">删除</s:a>
 														</TD>
 													</TR>
+													
 												</s:iterator>
 											</TBODY>
 										</TABLE>
