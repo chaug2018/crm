@@ -12,7 +12,8 @@ import com.yzj.domain.BaseDict;
 
 @Repository("baseDictDao")
 public class BaseDictDaoImpl implements BaseDictDao {
-	@Resource
+	
+	@Resource(name = "hibernateTemplate")
 	HibernateTemplate hibernateTemplate;
 	
 	@Override

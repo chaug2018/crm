@@ -48,11 +48,11 @@ public class LinkMan implements Serializable {
 	@Column(name="lkm_memo")
 	private String lkmMemo;
 	
-	
-//	外键，多对一，多个联系人可以是同一客户
+	//多对一关系映射：多个联系人可以是属于一个客户
 	@ManyToOne
-	@JoinColumn(name="lkm_cust_id",referencedColumnName = "cust_id")
-	private Customer lkmCustId;
+	@JoinColumn(name="lkm_cust_id",referencedColumnName="cust_id")
+	private Customer customer;
+
 	public Long getLkmId() {
 		return lkmId;
 	}
@@ -95,17 +95,19 @@ public class LinkMan implements Serializable {
 	public void setLkmMemo(String lkmMemo) {
 		this.lkmMemo = lkmMemo;
 	}
-	public Customer getLkmCustId() {
-		return lkmCustId;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setLkmCustId(Customer lkmCustId) {
-		this.lkmCustId = lkmCustId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	@Override
 	public String toString() {
 		return "LinkMan [lkmId=" + lkmId + ", lkmName=" + lkmName + ", lkmGender=" + lkmGender + ", lkmPhone="
-				+ lkmPhone + ", lkmMobile=" + lkmMobile + ", lkmEmail=" + lkmEmail + ", lkmMemo=" + lkmMemo
-				+ ", lkmCustId=" + lkmCustId + "]";
+				+ lkmPhone + ", lkmMobile=" + lkmMobile + ", lkmEmail=" + lkmEmail + ", lkmPosition=" + lkmPosition
+				+ ", lkmMemo=" + lkmMemo + ", customer=" + customer + "]";
 	}
-
+	
+	
+	
 }

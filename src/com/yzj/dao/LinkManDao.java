@@ -12,4 +12,10 @@ public interface LinkManDao {
 
 	void addLinkMan(LinkMan linkman);
 
+	void deleteLinkManById(Long lkmId);
+	
+	LinkMan findLinkMan(Long lkmId);
+
+	void saveLinkMan(LinkMan linkman);
+
 }

@@ -50,20 +50,25 @@
 							</TR>
 						</TABLE>
 						<TABLE cellSpacing=0 cellPadding=5 border=0>
-							<!-- <tr>
+						 <tr>
 								<td>所属客户：</td>
 								<td colspan="3">
-									<input type="text" name="custId" value="1" style="WIDTH: 180px"/>
+									<select name="customer.custId">
+									<option value="">---请选择---</option>
+									<s:iterator value="customers">
+									<option value="${custId}">${custName }</option>
+									</s:iterator>
+									</select>
 								</td>
-							</tr> -->
+							</tr> 
 							<TR>
 								<td>联系人名称：</td>
 								<td><s:textfield class="textbox" id="sChannel2"
 										style="WIDTH: 180px" maxLength="50" name="lkmName"></s:textfield>
 								</td>
 								<td>联系人性别：</td>
-								<td><input type="radio" value="f" name="lkmGender">男
-									<input type="radio" value="m" name="lkmGender">女</td>
+								<td><input type="radio" value="男" name="lkmGender">男
+									<input type="radio" value="女" name="lkmGender">女</td>
 							</TR>
 							<TR>
 								<td>联系人办公电话 ：</td>
@@ -89,12 +94,6 @@
 								<td>联系人简介 ：</td>
 								<td colspan="2"><s:textarea class="textbox" id="sChannel2"
 										style="WIDTH: 180px" maxLength="50" name="lkmMemo"></s:textarea></td>
-							</TR>
-							<TR>
-								<td>客户 ：</td>
-								<td colspan="2"><s:select name="lkmCustId.custId"
-										listKey="custId" listValue="custName" list="customers"
-										headerKey="" maxLength="50" headerValue="---请选择---"></s:select></td>
 							</TR>
 							<tr>
 								<td rowspan=2>

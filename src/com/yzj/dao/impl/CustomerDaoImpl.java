@@ -50,5 +50,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		hibernateTemplate.update(customer);
 
 	}
+	/**
+	 * 投影查询
+	 */
+
+	@Override
+	public List<Customer> findAll() {
+		// TODO Auto-generated method stub
+		return (List<Customer>) hibernateTemplate.find("select new Customer(custId,custName) from Customer");
+	}
 
 }

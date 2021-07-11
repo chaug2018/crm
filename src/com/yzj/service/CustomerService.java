@@ -52,5 +52,10 @@ public interface CustomerService {
 	 * @param customer
 	 */
 	void updateCustomer(Customer customer);
+/**
+ * 投影查询
+ * @return
+ */
+	List<Customer> findAll();
 
 }

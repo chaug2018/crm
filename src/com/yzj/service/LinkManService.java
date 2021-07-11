@@ -11,4 +11,10 @@ public interface LinkManService {
 	List<LinkMan> findAllLinkMan(DetachedCriteria dCriteria);
 
 	void addLinkMan(LinkMan linkman);
+
+	void deleteLinkMan(Long lkmId);
+
+	LinkMan findLinkMan(Long lkmId);
+
+	void saveLinkMan(LinkMan linkman);
 }

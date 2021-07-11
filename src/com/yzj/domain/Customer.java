@@ -1,6 +1,8 @@
 package com.yzj.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -46,6 +49,22 @@ public class Customer implements Serializable {
 	@ManyToOne(targetEntity=BaseDict.class)
 	@JoinColumn(name="cust_level",referencedColumnName="dict_id")
 	private BaseDict custLevel;
+	
+//	一对多，同一客户有多个联系人
+	@OneToMany(mappedBy ="customer")
+	private Set<LinkMan> linkmans=new HashSet<LinkMan>(0);
+
+
+	
+	public Customer() {
+		super();
+	}
+
+	public Customer(Long custId, String custName) {
+		super();
+		this.custId = custId;
+		this.custName = custName;
+	}
 
 	public Long getCustId() {
 		return custId;
@@ -110,5 +129,7 @@ public class Customer implements Serializable {
 				+ ", custLevel=" + custLevel + "]";
 	}
 	
+
+
 	
 }
