@@ -24,11 +24,25 @@
 					+ custId;
 		}
 	}
+	function topage(num) {
+<%-- 给表单的隐藏域中num赋值--%>
+	document.getElementById("pagenum").value = num;
+		//2.提交表单
+		document.forms[0].submit();
+<%--
+			//1.给表单中提供的一个隐藏域赋值，用于提供当前页
+	document.getElementById("pagenum").value = num;
+	//2.提交表单
+	document.forms[0].submit();
+		--%>
+	}
 </SCRIPT>
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+	<s:debug></s:debug>
 	<s:form action="findAllCustomer" namespace="/customer">
+	<s:hidden name="num" value="" id="pagenum"></s:hidden>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -70,11 +84,11 @@
 											<TBODY>
 												<TR>
 													<TD>客户名称：</TD>
-													<TD>
-													<s:textfield name="custName" class="textbox" id="sChannel2" style="WIDTH: 80px" maxLength="50" />
-													</TD>
+													<TD><s:textfield name="custName" class="textbox"
+															id="sChannel2" style="WIDTH: 80px" maxLength="50" /></TD>
 													<TD>所属行业：</TD>
-													<TD><s:textfield name="custIndustry" class="textbox" id="sChannel2" style="WIDTH: 80px" maxLength="50" /></TD>
+													<TD><s:textfield name="custIndustry" class="textbox"
+															id="sChannel2" style="WIDTH: 80px" maxLength="50" /></TD>
 													<TD>客户来源：</TD>
 													<TD><s:select name="custSource.dictId"
 															list="custSources" headerKey="" headerValue="---请选择---"
@@ -113,7 +127,7 @@
 													<TD>联系电话</TD>
 													<TD>操作</TD>
 												</TR>
-												<s:iterator value="customers">
+												<s:iterator value="page.Result">
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD>${custName}</TD>
@@ -134,35 +148,24 @@
 													--%> <s:a href="javascript:deleOne('%{custId}')">删除</s:a>
 														</TD>
 													</TR>
-													
+
 												</s:iterator>
 											</TBODY>
 										</TABLE>
 									</TD>
 								</TR>
-								<%-- <TR>
-									<TD>
-										<SPAN id=pagelink>
-											<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页
-												,每页显示
-												<select name="pageSize">
-												
-												<option value="15" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
-												<option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option>
-												</select>
-												条
-												[<A href="javascript:to_page(${page-1})">前一页</A>]
-												<B>${page}</B>
-												[<A href="javascript:to_page(${page+1})">后一页</A>] 
-												到
-												<input type="text" size="3" id="page" name="page" />
-												页
-												<input type="button" value="Go" onclick="to_page()"/>
-											</DIV>
-										</SPAN>
+								<TR>
+									<TD align="center">
+										<%--分页的开始 --%>
+										<div>
+											<a href="javascript:topage(1)">首页</a> <a
+												href="javascript:topage('${page.prePageNum}')">上一页</a>
+											<a href="javascript:topage('${page.nextPageNum}')">下一页</a> <a
+												href="javascript:topage('${page.totalPage}')">末页</a>
+											第${page.currentPageNum }页/共${page.totalPage }页
+										</div> <%--分页的结束 --%>
 									</TD>
-								</TR> --%>
+								</TR>
 							</TBODY>
 						</TABLE>
 					</TD>

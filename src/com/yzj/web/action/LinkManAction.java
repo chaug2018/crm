@@ -85,7 +85,7 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 	public String addLinkMan() {
 
 		linkManService.addLinkMan(linkman);
-
+		System.out.println(linkman);
 		return "listLinkMan";
 	}
 

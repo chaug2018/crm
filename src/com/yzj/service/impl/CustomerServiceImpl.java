@@ -14,6 +14,7 @@ import com.yzj.dao.CustomerDao;
 import com.yzj.domain.BaseDict;
 import com.yzj.domain.Customer;
 import com.yzj.service.CustomerService;
+import com.yzj.web.commons.Page;
 
 @Service("customerService")
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -24,11 +25,33 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Resource(name = "baseDictDao")
 	BaseDictDao baseDictDao;
-
+	/**
+	 * 分页查询客户信息
+	 */
 	@Override
-	public List<Customer> findAll(DetachedCriteria criteria) {
-		// TODO Auto-generated method stub
-		return customerDao.findAll(criteria);
+	public Page findAll(DetachedCriteria criteria, Integer num) {
+		
+//		1.创建page对象
+		
+		
+//		初始当前页信息
+		int currentPageNum=1;
+		if (num!=null) {
+			currentPageNum=num;
+		}
+//		2.获取记录总数
+		int	totalRecords=customerDao.FindtotalRecords(criteria);
+		
+		Page page =new Page(currentPageNum,totalRecords);
+		
+//		3.查询分页的数据
+		List<Customer> customers=customerDao.findAll(criteria, currentPageNum,page.getPageSize());
+		
+		page.setResult(customers);
+		
+//		返回page对象
+		return page;
+	
 	}
 
 	@Override
@@ -80,5 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return customerDao.findAll();
 	}
+
+
 
 }

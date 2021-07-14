@@ -23,6 +23,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.yzj.domain.BaseDict;
 import com.yzj.domain.Customer;
 import com.yzj.service.CustomerService;
+import com.yzj.web.commons.Page;
 
 /**
  * 客户的动作类
@@ -48,6 +49,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	@Resource(name = "customerService")
 	private CustomerService custService;
+	
+	private Page page;
+	
+	private Integer num;//当前页
+	
 
 	@Override
 	public Customer getModel() {
@@ -142,8 +148,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 //			精确客户级别的id
 			dCriteria.add(Restrictions.eq("custLevel.dictId",customer.getCustLevel().getDictId()));
 		}
+		System.out.println("-------");
 //		7.执行查询语句
-		customers = custService.findAll(dCriteria);
+		System.out.println(num);
+		page = custService.findAll(dCriteria, num);
 //		1.获取客户来源
 		custSources = custService.findAllCustomerSource();
 //		2.获取客户级别
@@ -189,6 +197,24 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public void setCustService(CustomerService custService) {
 		this.custService = custService;
+	}
+	
+	
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
 	}
 
 	@Override

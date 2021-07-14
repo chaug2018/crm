@@ -6,6 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 
 import com.yzj.domain.BaseDict;
 import com.yzj.domain.Customer;
+import com.yzj.web.commons.Page;
 
 public interface CustomerService {
 	/**
@@ -13,7 +14,14 @@ public interface CustomerService {
 	 * @param criteria
 	 * @return
 	 */
-	List<Customer> findAll(DetachedCriteria criteria);
+	/**
+	 * 分页查询客户信息
+	 * @param criteria
+	 * @param num
+	 * @return page封装好的类
+	 */
+	Page findAll(DetachedCriteria criteria,Integer num);
+
 	/**
 	 * 新增客户
 	 * 
